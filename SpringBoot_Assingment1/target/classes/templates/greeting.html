@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    
+    
+    <div align="center">
+    <h1>Book Search/Add/Delete</h1>
+    <a href="/new">Create New Book</a>
+    <form action="#" th:action="@{/searchbook}" th:object="${book}"
+            method="post"> 
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Book ID:</td>
+                    <td><input type="text" th:field="*{bookId}" /></td>
+                    <td colspan="2"><button type="submit">Search</button> </td>
+                </tr>                
+            </table>
+        </form>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Volume</th>
+                <th>publishD ate</th>
+                <th>Price</th>
+                <th>Subject Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${listbooks}">
+                <td th:text="${book.bookId}">book ID</td>
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.volume}">Volume</td>
+                <td th:text="${book.publishDate}">publish Date</td>
+                <td th:text="${book.price}">Price</td>
+                <td th:text="${book.subjectId}">Subject ID</td>
+                <td>
+                  <a th:href="@{/delete/{id}(id=${book.bookId})}">Delete</a>  
+                             
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
+</body>
+</html>
